@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.UUID;
+
 enum Gender {
     Male, Female
 }
@@ -16,4 +18,8 @@ public class People {
         this.gender = gender;
         this.age = age;
     }
+
+	public People(Integer id2) {
+		// TODO Auto-generated constructor stub
+	}
 }
