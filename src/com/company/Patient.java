@@ -1,20 +1,19 @@
 package com.company;
+import java.util.Comparator;
 import java.util.Hashtable;
 import java.util.concurrent.atomic.AtomicInteger;
 
+enum BloodType {
+	A, B, AB, O, O_NEG, O_POS, A_NEG, A_POS, B_NEG, B_POS, AB_NEG, AB_POS
+}
 
-public class Patient extends People{
-;
-	private String bloodType;
+public class Patient extends People {
+	private BloodType bloodType;
 	private Integer priority;
 //	private static final AtomicInteger counter = new AtomicInteger(); //generate random ID
-	
-
 
 	public Patient(String name, Gender gender, Integer age) {
 		super(name, gender, age);
-		// TODO Auto-generated constructor stub
-		
 	}
 	
 	public Patient(Integer id) {
@@ -36,10 +35,10 @@ public class Patient extends People{
 		this.age = age;
 	}
 	
-	void setBloodType(String bt) {
+	void setBloodType(BloodType bt) {
 		this.bloodType = bt;
 	}
-	
+
 	void setPriorty(Integer p) {
 		this.priority = p;
 	}
@@ -57,17 +56,50 @@ public class Patient extends People{
 	Integer getAge () {
 		return this.age;
 	}
-	
-	String getBloodType() {
+
+	BloodType getBloodType() {
 		return this.bloodType;
 	}
 	
 	Integer getPriority() {
 		return this.priority;
 	}
-	
-
-
-	
-
 }
+
+class PatientIDCompare implements Comparator<Patient> {
+	public int compare(Patient p1, Patient p2) {
+		return p1.id.compareTo(p2.id);
+	}
+}
+
+class PatientNameCompare implements Comparator<Patient> {
+	public int compare(Patient p1, Patient p2) {
+		return p1.name.compareTo(p2.name);
+	}
+}
+
+class PatientAgeCompare implements Comparator<Patient> {
+	public int compare(Patient p1, Patient p2) {
+		return p1.age.compareTo(p2.age);
+	}
+}
+
+class PatientGenderCompare implements Comparator<Patient> {
+	public int compare(Patient p1, Patient p2) {
+		return p1.gender.compareTo(p2.gender);
+	}
+}
+
+class PatientBloodTypeCompare implements Comparator<Patient> {
+	public int compare(Patient p1, Patient p2) {
+		return p1.getBloodType().compareTo(p2.getBloodType());
+	}
+}
+
+class PatientPriorityCompare implements Comparator<Patient> {
+	public int compare(Patient p1, Patient p2) {
+		return p1.getPriority().compareTo(p2.getPriority());
+	}
+}
+
+
