@@ -64,6 +64,10 @@ public class Patient extends People {
 	Integer getPriority() {
 		return this.priority;
 	}
+	
+	public int compareTo(Patient x){
+		return this.priority.compareTo(x.getPriority());
+	}
 }
 
 class PatientIDCompare implements Comparator<Patient> {
@@ -101,5 +105,7 @@ class PatientPriorityCompare implements Comparator<Patient> {
 		return p1.getPriority().compareTo(p2.getPriority());
 	}
 }
+
+
 
 
