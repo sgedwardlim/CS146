@@ -12,8 +12,9 @@ public class Patient extends People {
 	private Integer priority;
 //	private static final AtomicInteger counter = new AtomicInteger(); //generate random ID
 
-	public Patient(String name, Gender gender, Integer age) {
+	public Patient(String name, Gender gender, Integer age, Integer priority) {
 		super(name, gender, age);
+		this.priority = priority;
 	}
 	
 	public Patient(Integer id) {

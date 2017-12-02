@@ -1,10 +1,6 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.NoSuchElementException;
-import java.util.Random;
+import java.util.*;
 
 public class Hospital {
 	
@@ -102,9 +98,24 @@ public class Hospital {
 		moveDown();
 		return hold;
 	}
-	
-	public static void main(String[] args) {
-		
-	}
-	
+
+    @Override
+    public String toString() {
+	    String stars = "\n*******************************\n";
+	    String patientListString = "";
+        Iterator itr = patientsList.iterator();
+        while (itr.hasNext()) {
+            Patient patient = (Patient) itr.next();
+            String formattedPatientInfo = String.format("%s Name: %s\nGender: %s\nAge: %s\nUrgency: %s\nBlood Type: %s\n %s",
+                                                        stars,
+                                                        patient.name,
+                                                        patient.getGender(),
+                                                        patient.age,
+                                                        patient.getPriority(),
+                                                        patient.getBloodType(),
+                                                        stars);
+            patientListString += formattedPatientInfo;
+        };
+        return patientListString;
+    }
 }
