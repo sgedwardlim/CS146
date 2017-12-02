@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -82,7 +83,24 @@ public class MenuManager {
                 gender = Gender.Male;
         }
         System.out.print("Enter age: ");
-        int age = scan.nextInt();
+        int age = 0;
+
+        boolean inputErr = true;
+        
+        while(inputErr) {
+        	if (scan.hasNextInt()) {
+        		age = scan.nextInt();
+        	}
+        	else {
+        		System.out.print("Invalid age input, please enter an integer: ");
+        		scan.next();
+        		continue;
+        	}
+        	inputErr = false;
+        }
+
+
+       
         System.out.print("Enter urgency (low, medium, high): ");
         scan.nextLine();
         String p = scan.nextLine();
@@ -99,6 +117,11 @@ public class MenuManager {
         Integer ID = scan.nextInt();
 
         Patient p = hosp.lookup(ID);
+        while(p == null) {
+        	System.out.print("Invalid ID, Please Enter another ID:");
+        	p = hosp.lookup(ID);
+        	ID = scan.nextInt();
+        }
 
         System.out.println("Patient name: " + p.getName());
         System.out.println("Patient gender: " + p.getGender());
