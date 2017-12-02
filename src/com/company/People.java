@@ -7,10 +7,10 @@ enum Gender {
 }
 
 public class People {
-    Integer id;
-    String name;
-    Gender gender;
-    Integer age;
+   Integer id;
+   String name;
+   Gender gender;
+   Integer age;
 
     public People(String name, Gender gender, Integer age) {
         id = new Integer(this.hashCode());

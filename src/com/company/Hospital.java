@@ -2,19 +2,46 @@ package com.company;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.NoSuchElementException;
+import java.util.Random;
 
 public class Hospital {
 	
 	public ArrayList<Patient> patientsList;
+	public HashMap<Integer,Patient> patientsMap;
+	
 	
 	public Hospital(){
 		patientsList = new ArrayList<Patient>();
+		patientsMap = new HashMap<Integer, Patient>();
 	}
 
 	public void insert(Patient patient){
+
+		int n = generateID();
+		while(patientsMap.containsKey(n)) {
+			n = generateID();
+		}
+		patient.setID(n);
 		patientsList.add(patient);
+		patientsMap.put(patient.getID(),patient);
 		moveUp();
+	}
+	
+	public Patient lookup(Integer ID) {
+		
+		
+		return patientsMap.get(ID);
+	}
+	
+	private int generateID() {
+		Random rand = new Random();
+		
+		int ID = rand.nextInt(89999999) + 10000000;
+		
+		return ID;
+		
 	}
 	
 	private void moveUp(){

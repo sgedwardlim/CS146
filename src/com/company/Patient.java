@@ -39,7 +39,7 @@ public class Patient extends People {
 		this.bloodType = bt;
 	}
 
-	void setPriorty(Integer p) {
+	void setPriority(Integer p) {
 		this.priority = p;
 	}
 	Integer getID() {
