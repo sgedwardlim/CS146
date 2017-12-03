@@ -28,7 +28,20 @@ public class MenuManager {
         System.out.println(welcomeMessage);
 
         Scanner scan = new Scanner(System.in);
-        int input = scan.nextInt();
+        boolean inputerror = true;
+        int input = 0;
+        while(inputerror) {
+        	if (scan.hasNextInt()) {
+        		input = scan.nextInt();
+        	} else {
+                String errorMessage = "Invalid input, please try again\n";
+                System.out.println(errorMessage);
+                displayMenu();
+                scan.next();
+                continue;
+        	}
+        	inputerror = false;
+        }
 
         switch (input) {
             case 1:
@@ -52,8 +65,6 @@ public class MenuManager {
                 break;
 
             default:
-                String errorMessage = "\nInvalid input, please try again\n";
-                System.out.println(errorMessage);
                 break;
 
         }
@@ -136,7 +147,16 @@ public class MenuManager {
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter patient ID");
         int id = scan.nextInt();
-        hosp.patientsMap.get(id);
+        
+        while(hosp.patientsMap.get(id) == null) {
+        	System.out.print("Invalid ID, Please Enter another ID:");
+        	id = scan.nextInt();
+        	hosp.patientsMap.get(id);
+     
+        	
+        }
+        
+        
 
         System.out.println("Select Category to edit");
         System.out.println("1. Name");
