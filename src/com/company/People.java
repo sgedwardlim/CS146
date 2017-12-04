@@ -1,12 +1,12 @@
 package com.company;
 
-import java.util.UUID;
+import java.io.Serializable;
 
 enum Gender {
     Male, Female
 }
 
-public class People {
+public class People implements Serializable{
    Integer id;
    String name;
    Gender gender;

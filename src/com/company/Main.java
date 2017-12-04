@@ -1,5 +1,9 @@
 package com.company;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+
 enum Location {
 	CUPERTINO, SAN_JOSE, LOS_ALTOS, SANTA_CLARA, MOUNTAIN_VIEW, HAYWARD, FRESNO, GILROY
 }
@@ -7,12 +11,16 @@ enum Location {
 public class Main {
 
 	static Hospital hosp;
+	private static String fileName = "hospdata.bin";
 
 	public static void main(String[] args) {
 		// By this point we should have a list of patients
-		hosp = new Hospital();
-        hosp.insert(new Patient("Fake Patient 1", Gender.Male, 10, 1));
-        hosp.insert(new Patient("Fake Patient 2", Gender.Female, 12, 2));
+		//hosp = new Hospital();
+		
+		hosp = open();
+		
+//        hosp.insert(new Patient("Fake Patient 1", Gender.Male, 10, 1));
+//        hosp.insert(new Patient("Fake Patient 2", Gender.Female, 12, 2));
 
         MenuManager menuManager = new MenuManager(hosp);
         menuManager.displayMenu();
@@ -31,4 +39,20 @@ public class Main {
 
 		// search for patient via id via command line (hash map)
 	}
+	
+	   private static Hospital open() {
+		   Hospital hosp = new Hospital();
+		   try {
+			ObjectInputStream is = new ObjectInputStream(new FileInputStream(fileName));
+			hosp = (Hospital) is.readObject();
+			is.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		   return hosp;
+	   }
 }

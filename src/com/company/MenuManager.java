@@ -1,6 +1,11 @@
 package com.company;
 
-import java.util.InputMismatchException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
 /**
@@ -8,6 +13,12 @@ import java.util.Scanner;
  */
 public class MenuManager {
     private Hospital hosp;
+    
+   private String fileName = "hospdata.bin";
+   
+    
+
+    
 
     public MenuManager(Hospital hosp) {
         this.hosp = hosp;
@@ -61,7 +72,7 @@ public class MenuManager {
                 break;
 
             case 5:
-                System.exit(0);
+                exit();
                 break;
 
             default:
@@ -294,6 +305,20 @@ public class MenuManager {
         case 2: displayMenu();
         default: displayMenu();
         }
+    }
+    
+    private void exit() {
+        try {
+        	ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileName));
+        	os.writeObject(hosp);
+        	os.close();
+        } catch (FileNotFoundException e) {
+        	e.printStackTrace();
+        } catch (IOException IOe) {
+        	IOe.printStackTrace();
+        }
+        System.exit(0);
+        
     }
 
     private int priorityMap(String urgency) {

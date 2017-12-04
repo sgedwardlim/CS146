@@ -1,13 +1,12 @@
 package com.company;
+import java.io.Serializable;
 import java.util.Comparator;
-import java.util.Hashtable;
-import java.util.concurrent.atomic.AtomicInteger;
 
 enum BloodType {
 	A, B, AB, O, O_NEG, O_POS, A_NEG, A_POS, B_NEG, B_POS, AB_NEG, AB_POS
 }
 
-public class Patient extends People {
+public class Patient extends People implements Serializable{
 	private BloodType bloodType;
 	private Integer priority;
 //	private static final AtomicInteger counter = new AtomicInteger(); //generate random ID

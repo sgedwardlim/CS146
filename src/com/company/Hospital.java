@@ -1,11 +1,17 @@
 package com.company;
 
-import java.util.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.Random;
 
-public class Hospital {
+public class Hospital implements Serializable{
 	
 	public ArrayList<Patient> patientsList;
 	public HashMap<Integer,Patient> patientsMap;
+	
 	
 	
 	public Hospital(){
