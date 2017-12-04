@@ -119,7 +119,8 @@ public class MenuManager {
 
         Patient patient = new Patient(name, gender, age, priority);
         hosp.insert(patient);
-        System.out.println("Your Patient ID is: " + patient.getID());
+        System.out.println("\nPatient resgistered!\nYour Patient ID is: " + patient.getID());
+        
     }
 
     private void displayPatientDetail() {
@@ -140,9 +141,24 @@ public class MenuManager {
         if (p.getBloodType() != null)
             System.out.println("Patient Blood Type: " + p.getBloodType());
         System.out.println("Urgency: " + p.getPriority());
+        
+        System.out.println("1. Edit patient");
+        System.out.println("2. Back to menu");
+        scan.nextLine();
+        int  choice = scan.nextInt();
+        
+        switch (choice) {
+        case 1: editPatient(ID);
+        break;
+        case 2: displayMenu();
+        default: displayMenu();
+        }
+        
+        
 
     }
 
+   
     private void editPatient() {
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter patient ID");
@@ -158,7 +174,7 @@ public class MenuManager {
         
         
 
-        System.out.println("Select Category to edit");
+        System.out.println("\nSelect Category to edit");
         System.out.println("1. Name");
         System.out.println("2. Gender");
         System.out.println("3. Age");
@@ -176,32 +192,107 @@ public class MenuManager {
         switch (input) {
             case 1:
                 System.out.println("Enter new name: ");
+                scan.nextLine();
                 name = scan.nextLine();
                 hosp.patientsMap.get(id).setName(name);
                 break;
             case 2:
                 System.out.println("Enter gender: ");
+                scan.nextLine();
                 g = scan.nextLine();
                 Gender gender = Gender.valueOf(g);
                 hosp.patientsMap.get(id).setGender(gender);
                 break;
             case 3:
                 System.out.println("Enter new age: ");
+                scan.nextLine();
                 age = scan.nextInt();
                 hosp.patientsMap.get(id).setAge(age);
                 break;
             case 4:
                 System.out.println("Enter urgency(low, medium, high): ");
+                scan.nextLine();
                 urgency = scan.nextLine();
                 int priority = priorityMap(urgency);
                 hosp.patientsMap.get(id).setPriority(priority);
                 break;
             case 5:
                 System.out.println("Enter blood type: ");
+                scan.nextLine();
                 bloodtype = scan.nextLine();
                 BloodType bt = BloodType.valueOf(bloodtype);
                 hosp.patientsMap.get(id).setBloodType(bt);
                 break;
+        }
+        
+        System.out.println("\nPatient detail edited! \n");
+    }
+    private void editPatient(Integer id) {
+        Scanner scan = new Scanner(System.in);
+        hosp.patientsMap.get(id);
+        
+ 
+
+        System.out.println("\nSelect Category to edit");
+        System.out.println("1. Name");
+        System.out.println("2. Gender");
+        System.out.println("3. Age");
+        System.out.println("4. Urgency");
+        System.out.println("5. Blood Type");
+
+        int input = scan.nextInt();
+
+        String name;
+        String g;
+        Integer age;
+        String urgency;
+        String bloodtype;
+
+        switch (input) {
+            case 1:
+                System.out.println("Enter new name: ");
+                scan.nextLine();
+                name = scan.nextLine();
+                hosp.patientsMap.get(id).setName(name);
+                break;
+            case 2:
+                System.out.println("Enter gender: ");
+                scan.nextLine();
+                g = scan.nextLine();
+                Gender gender = Gender.valueOf(g);
+                hosp.patientsMap.get(id).setGender(gender);
+                break;
+            case 3:
+                System.out.println("Enter new age: ");
+                scan.nextLine();
+                age = scan.nextInt();
+                hosp.patientsMap.get(id).setAge(age);
+                break;
+            case 4:
+                System.out.println("Enter urgency(low, medium, high): ");
+                scan.nextLine();
+                urgency = scan.nextLine();
+                int priority = priorityMap(urgency);
+                hosp.patientsMap.get(id).setPriority(priority);
+                break;
+            case 5:
+                System.out.println("Enter blood type: ");
+                scan.nextLine();
+                bloodtype = scan.nextLine();
+                BloodType bt = BloodType.valueOf(bloodtype);
+                hosp.patientsMap.get(id).setBloodType(bt);
+                break;
+        }
+        
+        System.out.println("\nPatient detail edited!");
+        System.out.println("1. Edit other details");
+        System.out.println("2. Back to main menu");
+        
+        input = scan.nextInt();
+        switch (input) {
+        case 1: editPatient(id);
+        case 2: displayMenu();
+        default: displayMenu();
         }
     }
 
